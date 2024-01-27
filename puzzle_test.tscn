@@ -1,0 +1,228 @@
+[gd_scene load_steps=21 format=3 uid="uid://ymumerqhokl1"]
+
+[ext_resource type="Script" path="res://puzzle_test.gd" id="1_vecjt"]
+[ext_resource type="Texture2D" uid="uid://bslq1lmnpj1ge" path="res://arrows.png" id="3_mk7ae"]
+[ext_resource type="Texture2D" uid="uid://bdgujwi7ndxkj" path="res://arrows pressed.png" id="4_ph68j"]
+[ext_resource type="Script" path="res://Stack.gd" id="5_yiq4t"]
+[ext_resource type="PackedScene" uid="uid://bu2p4f53kkd35" path="res://jelly.tscn" id="6_44tl2"]
+[ext_resource type="Texture2D" uid="uid://c2hm6ruc7cg8w" path="res://idle.png" id="6_k54ap"]
+[ext_resource type="PackedScene" uid="uid://c5hhj542rep75" path="res://obstucalos.tscn" id="6_snc1q"]
+[ext_resource type="PackedScene" uid="uid://bly3lrw80eanc" path="res://world_environment.tscn" id="8_qtj6n"]
+[ext_resource type="Shader" path="res://checkered.gdshader" id="9_am2qv"]
+[ext_resource type="Shader" path="res://meta.gdshader" id="10_24pch"]
+[ext_resource type="Script" path="res://Meta.gd" id="10_e8b43"]
+[ext_resource type="Shader" path="res://jelly.gdshader" id="12_ioxia"]
+
+[sub_resource type="Theme" id="Theme_tbg0e"]
+default_font_size = 32
+
+[sub_resource type="Theme" id="Theme_f7saw"]
+default_font_size = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vrxca"]
+render_priority = 0
+shader = ExtResource("9_am2qv")
+shader_parameter/gridColor = Color(0.886275, 0.886275, 0.886275, 0.317647)
+shader_parameter/checkerColor = Color(0.933333, 0.933333, 0.933333, 0.0901961)
+shader_parameter/fadeStart = 0.0
+shader_parameter/fadeEnd = 30.0
+shader_parameter/unitSize = 2.5
+shader_parameter/subdivisions = 1
+shader_parameter/majorLineThickness = 5.0
+shader_parameter/minorLineThickness = 0.0
+shader_parameter/minorLineAlpha = 0.3
+shader_parameter/centerOffset = Vector3(0, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lg4ab"]
+material = SubResource("ShaderMaterial_vrxca")
+size = Vector2(75, 75)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6nsm"]
+render_priority = 0
+shader = ExtResource("10_24pch")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpqu3"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_s6nsm")
+shader = ExtResource("12_ioxia")
+shader_parameter/albedo = Color(1, 1, 0, 0)
+shader_parameter/roughness = 0.15
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(1, 1, 0, 0.894118)
+shader_parameter/edge_strength = 0.451
+shader_parameter/scale = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_dewtj"]
+material = SubResource("ShaderMaterial_qpqu3")
+size = Vector3(2.4, 2.4, 2.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qsaqw"]
+
+[node name="Puzzle test" type="Node3D"]
+script = ExtResource("1_vecjt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.313992, -0.822227, 0.474713, 0, 0.5, 0.866025, -0.949425, -0.271925, 0.156996, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_split_1 = 0.105
+directional_shadow_split_2 = 0.152
+directional_shadow_max_distance = 2393.3
+directional_shadow_pancake_size = 0.5
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 1500.0
+offset_bottom = 1080.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1500, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 11, 5)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1500.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[node name="Interfaz" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1919.0
+offset_bottom = 1081.0
+
+[node name="Up" type="TextureButton" parent="Interfaz"]
+layout_mode = 0
+offset_left = 1683.0
+offset_top = 68.0
+offset_right = 1747.0
+offset_bottom = 132.0
+texture_normal = ExtResource("3_mk7ae")
+texture_pressed = ExtResource("4_ph68j")
+
+[node name="Down" type="TextureButton" parent="Interfaz"]
+layout_mode = 0
+offset_left = 1687.0
+offset_top = 239.0
+offset_right = 1751.0
+offset_bottom = 303.0
+texture_normal = ExtResource("3_mk7ae")
+texture_pressed = ExtResource("4_ph68j")
+flip_v = true
+
+[node name="Left" type="TextureButton" parent="Interfaz"]
+layout_mode = 0
+offset_left = 1598.0
+offset_top = 225.0
+offset_right = 1662.0
+offset_bottom = 289.0
+rotation = -1.5708
+texture_normal = ExtResource("3_mk7ae")
+texture_pressed = ExtResource("4_ph68j")
+
+[node name="Right" type="TextureButton" parent="Interfaz"]
+layout_mode = 0
+offset_left = 1833.0
+offset_top = 156.0
+offset_right = 1897.0
+offset_bottom = 220.0
+rotation = 1.5708
+texture_normal = ExtResource("3_mk7ae")
+texture_pressed = ExtResource("4_ph68j")
+
+[node name="Run" type="Button" parent="Interfaz"]
+layout_mode = 0
+offset_left = 1543.0
+offset_top = 594.0
+offset_right = 1679.0
+offset_bottom = 666.0
+theme = SubResource("Theme_tbg0e")
+text = "Run"
+icon = ExtResource("6_k54ap")
+
+[node name="Clear" type="Button" parent="Interfaz"]
+layout_mode = 0
+offset_left = 1729.0
+offset_top = 588.0
+offset_right = 1885.0
+offset_bottom = 660.0
+theme = SubResource("Theme_f7saw")
+text = "Clear"
+icon = ExtResource("6_k54ap")
+
+[node name="Stack" type="GridContainer" parent="Interfaz"]
+layout_direction = 2
+layout_mode = 0
+offset_left = 1533.0
+offset_top = 973.0
+offset_right = 1733.0
+offset_bottom = 1037.0
+columns = 3
+script = ExtResource("5_yiq4t")
+
+[node name="First" type="TextureRect" parent="Interfaz/Stack"]
+layout_mode = 2
+texture = ExtResource("6_k54ap")
+
+[node name="Second" type="TextureRect" parent="Interfaz/Stack"]
+layout_mode = 2
+texture = ExtResource("6_k54ap")
+
+[node name="Third" type="TextureRect" parent="Interfaz/Stack"]
+layout_mode = 2
+texture = ExtResource("6_k54ap")
+
+[node name="jelly" parent="." instance=ExtResource("6_44tl2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58642, 0)
+
+[node name="Obstucalos" parent="." instance=ExtResource("6_snc1q")]
+visible = false
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("8_qtj6n")]
+
+[node name="Piso" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso"]
+mesh = SubResource("PlaneMesh_lg4ab")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Piso"]
+transform = Transform3D(20, 0, 0, 0, 2.62268e-06, 20, 0, -20, 2.62268e-06, 0, -10, 0)
+polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
+
+[node name="Meta" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12254, 0)
+script = ExtResource("10_e8b43")
+
+[node name="Cubo" type="MeshInstance3D" parent="Meta"]
+mesh = SubResource("BoxMesh_dewtj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meta"]
+transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0, 0)
+shape = SubResource("BoxShape3D_qsaqw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Meta"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 3.747
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Meta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.12254, 0)
+
+[node name="Wall" type="CollisionPolygon3D" parent="Meta/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12254, -1.68509)
+polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
+
+[connection signal="pressed" from="Interfaz/Up" to="Interfaz/Stack" method="_on_up_pressed"]
+[connection signal="pressed" from="Interfaz/Down" to="Interfaz/Stack" method="_on_down_pressed"]
+[connection signal="pressed" from="Interfaz/Left" to="Interfaz/Stack" method="_on_left_pressed"]
+[connection signal="pressed" from="Interfaz/Right" to="Interfaz/Stack" method="_on_right_pressed"]
+[connection signal="pressed" from="Interfaz/Run" to="Interfaz/Stack" method="_on_run_pressed"]
+[connection signal="pressed" from="Interfaz/Clear" to="Interfaz/Stack" method="_on_clear_pressed"]
+[connection signal="move_in_direction" from="Interfaz/Stack" to="jelly" method="_on_stack_move_in_direction"]
+[connection signal="wall_hit" from="jelly" to="Interfaz/Stack" method="_on_jelly_wall_hit"]
+[connection signal="winning" from="Meta" to="jelly" method="_on_meta_winning"]

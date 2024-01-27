@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://sooucnor1vga"]
+
+[ext_resource type="PackedScene" uid="uid://fs6tx8kabbd6" path="res://jelly.tscn" id="1_wblou"]
+
+[sub_resource type="Environment" id="Environment_8at2q"]
+background_mode = 1
+background_color = Color(0, 0, 0.239216, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+adjustment_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8at2q")
+
+[node name="jelly" parent="." instance=ExtResource("1_wblou")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

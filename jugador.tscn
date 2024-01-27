@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ovq7a0dhanwu"]
+
+[ext_resource type="Script" path="res://jelly.gd" id="1_4j4ni"]
+[ext_resource type="Texture2D" uid="uid://b66b0ahg24nn0" path="res://icon.svg" id="1_j5xgj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrpsw"]
+
+[node name="Jugador" type="CharacterBody2D"]
+script = ExtResource("1_4j4ni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(8.9, 8.9)
+shape = SubResource("RectangleShape2D_wrpsw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_j5xgj")
