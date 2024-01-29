@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ymumerqhokl1"]
+[gd_scene load_steps=31 format=3 uid="uid://ymumerqhokl1"]
 
 [ext_resource type="Script" path="res://puzzle_test.gd" id="1_vecjt"]
 [ext_resource type="Texture2D" uid="uid://bslq1lmnpj1ge" path="res://arrows.png" id="3_mk7ae"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shader" path="res://meta.gdshader" id="10_24pch"]
 [ext_resource type="Script" path="res://Meta.gd" id="10_e8b43"]
 [ext_resource type="Shader" path="res://jelly.gdshader" id="12_ioxia"]
+[ext_resource type="Shader" path="res://tests.gdshader" id="13_81tre"]
 
 [sub_resource type="Theme" id="Theme_tbg0e"]
 default_font_size = 32
@@ -61,6 +62,58 @@ material = SubResource("ShaderMaterial_qpqu3")
 size = Vector3(2.4, 2.4, 2.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qsaqw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5w7pj"]
+render_priority = 0
+shader = ExtResource("10_24pch")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_47wv5"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_5w7pj")
+shader = ExtResource("13_81tre")
+shader_parameter/top = Color(1, 1, 0, 0)
+shader_parameter/bot = Color(0, 0, 0, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hdan6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hij4g"]
+render_priority = 0
+shader = ExtResource("10_24pch")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77odm"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_hij4g")
+shader = ExtResource("13_81tre")
+shader_parameter/top = Color(1, 1, 0, 0)
+shader_parameter/bot = Color(0, 0, 0, 0.5)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ttaw7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_avwfy"]
+render_priority = 0
+shader = ExtResource("10_24pch")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkciv"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_avwfy")
+shader = ExtResource("13_81tre")
+shader_parameter/top = Color(1, 1, 1, 0)
+shader_parameter/bot = Color(0, 0, 0, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dgpxb"]
+height = 1.0
 
 [node name="Puzzle test" type="Node3D"]
 script = ExtResource("1_vecjt")
@@ -216,6 +269,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.12254, 0)
 [node name="Wall" type="CollisionPolygon3D" parent="Meta/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12254, -1.68509)
 polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78026, 0, 4.21511)
+material_override = SubResource("ShaderMaterial_47wv5")
+mesh = SubResource("BoxMesh_hdan6")
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.21511)
+material_override = SubResource("ShaderMaterial_77odm")
+mesh = SubResource("SphereMesh_ttaw7")
+
+[node name="Cylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94836, 0, 4.21511)
+material_override = SubResource("ShaderMaterial_gkciv")
+mesh = SubResource("CylinderMesh_dgpxb")
 
 [connection signal="pressed" from="Interfaz/Up" to="Interfaz/Stack" method="_on_up_pressed"]
 [connection signal="pressed" from="Interfaz/Down" to="Interfaz/Stack" method="_on_down_pressed"]
