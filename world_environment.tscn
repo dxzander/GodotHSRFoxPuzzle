@@ -10,3 +10,7 @@ adjustment_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_8at2q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.313992, -0.822227, 0.474713, 0, 0.5, 0.866025, -0.949425, -0.271925, 0.156996, 0, 0, 0)
+shadow_enabled = true

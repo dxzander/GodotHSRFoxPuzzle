@@ -11,8 +11,8 @@
 [ext_resource type="Shader" path="res://checkered.gdshader" id="9_am2qv"]
 [ext_resource type="Shader" path="res://meta.gdshader" id="10_24pch"]
 [ext_resource type="Script" path="res://Meta.gd" id="10_e8b43"]
-[ext_resource type="Shader" path="res://jelly.gdshader" id="12_ioxia"]
 [ext_resource type="Shader" path="res://tests.gdshader" id="13_81tre"]
+[ext_resource type="Shader" path="res://cell.gdshader" id="13_b1soi"]
 
 [sub_resource type="Theme" id="Theme_tbg0e"]
 default_font_size = 32
@@ -49,13 +49,10 @@ shader_parameter/shine_width = 3.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qpqu3"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_s6nsm")
-shader = ExtResource("12_ioxia")
-shader_parameter/albedo = Color(1, 1, 0, 0)
-shader_parameter/roughness = 0.15
-shader_parameter/normal_strength = 1.0
-shader_parameter/edge_color = Color(1, 1, 0, 0.894118)
-shader_parameter/edge_strength = 0.451
-shader_parameter/scale = 1.0
+shader = ExtResource("13_81tre")
+shader_parameter/top = Color(1, 1, 0, 0)
+shader_parameter/bot = Color(1, 1, 0, 0.0235294)
+shader_parameter/scale = 2.4
 
 [sub_resource type="BoxMesh" id="BoxMesh_dewtj"]
 material = SubResource("ShaderMaterial_qpqu3")
@@ -63,39 +60,75 @@ size = Vector3(2.4, 2.4, 2.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qsaqw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5w7pj"]
-render_priority = 0
-shader = ExtResource("10_24pch")
-shader_parameter/shine_color = Color(1, 1, 1, 1)
-shader_parameter/cycle_interval = 1.0
-shader_parameter/shine_speed = 3.0
-shader_parameter/shine_width = 3.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_47wv5"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_5w7pj")
-shader = ExtResource("13_81tre")
-shader_parameter/top = Color(1, 1, 0, 0)
-shader_parameter/bot = Color(0, 0, 0, 0.5)
+shader = ExtResource("13_b1soi")
+shader_parameter/use_shade = true
+shader_parameter/use_specular = false
+shader_parameter/use_rim = false
+shader_parameter/use_light = false
+shader_parameter/use_shadow = false
+shader_parameter/base_color = Color(1, 1, 0, 1)
+shader_parameter/shade_color = Color(0.403922, 0.403922, 0, 1)
+shader_parameter/specular_tint = Color(0.75, 0.75, 0.75, 0.75)
+shader_parameter/rim_tint = Color(0.75, 0.75, 0.75, 0.75)
+shader_parameter/shade_threshold = -0.449
+shader_parameter/shade_softness = 0.0
+shader_parameter/specular_glossiness = 15.0
+shader_parameter/specular_threshold = 0.5
+shader_parameter/specular_softness = 0.1
+shader_parameter/rim_threshold = 0.25
+shader_parameter/rim_softness = 0.05
+shader_parameter/rim_spread = 0.5
+shader_parameter/shadow_threshold = 0.7
+shader_parameter/shadow_softness = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_hdan6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hij4g"]
-render_priority = 0
-shader = ExtResource("10_24pch")
-shader_parameter/shine_color = Color(1, 1, 1, 1)
-shader_parameter/cycle_interval = 1.0
-shader_parameter/shine_speed = 3.0
-shader_parameter/shine_width = 3.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8tg81"]
+shading_mode = 0
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oeopq"]
+_surfaces = [{
+"aabb": AABB(-0.54, -0.54, -0.54, 1.08, 1.08, 1.08),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255, 0, 0, 255, 255, 0, 0, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 255, 0, 255),
+"format": 34359738377,
+"material": SubResource("StandardMaterial3D_8tg81"),
+"primitive": 1,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 144,
+"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 10, 0, 0, 191, 236, 255, 255, 62, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 31, 133, 235, 190, 0, 0, 0, 63, 236, 255, 255, 62, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 63, 10, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 31, 133, 235, 62, 0, 0, 0, 63, 10, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 236, 255, 255, 62, 236, 255, 255, 62, 113, 61, 10, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 63, 236, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 63, 10, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 191, 0, 0, 0, 63, 10, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 10, 0, 0, 191, 10, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 31, 133, 235, 190, 0, 0, 0, 191, 236, 255, 255, 62, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 31, 133, 235, 190, 10, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 31, 133, 235, 62, 0, 0, 0, 191, 10, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 31, 133, 235, 190, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 236, 255, 255, 62, 10, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 191, 236, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 31, 133, 235, 190, 10, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 191, 0, 0, 0, 191, 10, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 31, 133, 235, 190, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 63, 236, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 31, 133, 235, 62, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 191, 0, 0, 0, 63, 10, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 10, 0, 0, 191, 236, 255, 255, 62, 31, 133, 235, 190, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 63, 236, 255, 255, 190, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 63, 10, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 191, 0, 0, 0, 63, 236, 255, 255, 62, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 10, 0, 0, 191, 236, 255, 255, 62, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 63, 10, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 191, 236, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 31, 133, 235, 62, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 31, 133, 235, 190, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 191, 0, 0, 0, 191, 10, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 10, 0, 0, 191, 10, 0, 0, 191, 31, 133, 235, 190, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 31, 133, 235, 190, 236, 255, 255, 190, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 191, 10, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 31, 133, 235, 190, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 191, 0, 0, 0, 191, 236, 255, 255, 62, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 10, 0, 0, 191, 10, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 31, 133, 235, 190, 10, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 63, 236, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 31, 133, 235, 62, 0, 0, 0, 63, 236, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 236, 255, 255, 62, 10, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 191, 236, 255, 255, 62, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 31, 133, 235, 190, 0, 0, 0, 191, 236, 255, 255, 62, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 236, 255, 255, 190, 10, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 63, 236, 255, 255, 62, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 191, 0, 0, 0, 63, 236, 255, 255, 62, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 10, 0, 0, 191, 10, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 113, 61, 10, 191, 236, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 63, 0, 0, 0, 191, 236, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 10, 0, 0, 63, 10, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 63, 10, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 31, 133, 235, 62, 0, 0, 0, 63, 10, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 191, 236, 255, 255, 62, 10, 0, 0, 63, 31, 133, 235, 190, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 191, 10, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 31, 133, 235, 190, 0, 0, 0, 191, 10, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 191, 236, 255, 255, 190, 10, 0, 0, 191, 31, 133, 235, 190, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 63, 10, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 113, 61, 10, 191, 0, 0, 0, 63, 10, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 10, 0, 0, 191, 10, 0, 0, 63, 31, 133, 235, 190, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 63, 113, 61, 10, 191, 10, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 113, 61, 10, 63, 0, 0, 0, 191, 10, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 191, 10, 0, 0, 63, 10, 0, 0, 191, 31, 133, 235, 190)
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_77odm"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_hij4g")
-shader = ExtResource("13_81tre")
-shader_parameter/top = Color(1, 1, 0, 0)
-shader_parameter/bot = Color(0, 0, 0, 0.5)
+shader = ExtResource("13_b1soi")
+shader_parameter/use_shade = true
+shader_parameter/use_specular = false
+shader_parameter/use_rim = false
+shader_parameter/use_light = false
+shader_parameter/use_shadow = false
+shader_parameter/base_color = Color(1, 1, 0, 1)
+shader_parameter/shade_color = Color(0.596078, 0.596078, 0, 1)
+shader_parameter/specular_tint = Color(0.75, 0.75, 0.75, 0.75)
+shader_parameter/rim_tint = Color(0.75, 0.75, 0.75, 0.75)
+shader_parameter/shade_threshold = -0.668
+shader_parameter/shade_softness = 0.0
+shader_parameter/specular_glossiness = 15.0
+shader_parameter/specular_threshold = 0.412
+shader_parameter/specular_softness = 0.0
+shader_parameter/rim_threshold = 0.561
+shader_parameter/rim_softness = 1.0
+shader_parameter/rim_spread = 0.0
+shader_parameter/shadow_threshold = 0.0
+shader_parameter/shadow_softness = 0.006
 
 [sub_resource type="SphereMesh" id="SphereMesh_ttaw7"]
+radial_segments = 4
+rings = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_avwfy"]
 render_priority = 0
@@ -111,6 +144,7 @@ next_pass = SubResource("ShaderMaterial_avwfy")
 shader = ExtResource("13_81tre")
 shader_parameter/top = Color(1, 1, 1, 0)
 shader_parameter/bot = Color(0, 0, 0, 0.5)
+shader_parameter/scale = 1.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_dgpxb"]
 height = 1.0
@@ -261,7 +295,7 @@ shape = SubResource("BoxShape3D_qsaqw")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Meta"]
 light_color = Color(1, 1, 0, 1)
-light_energy = 3.747
+light_energy = 3.035
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meta"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.12254, 0)
@@ -274,6 +308,9 @@ polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78026, 0, 4.21511)
 material_override = SubResource("ShaderMaterial_47wv5")
 mesh = SubResource("BoxMesh_hdan6")
+
+[node name="DebugTangents" type="MeshInstance3D" parent="Cube"]
+mesh = SubResource("ArrayMesh_oeopq")
 
 [node name="Sphere" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.21511)
