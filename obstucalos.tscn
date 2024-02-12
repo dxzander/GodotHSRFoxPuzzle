@@ -1,19 +1,32 @@
 [gd_scene load_steps=7 format=3 uid="uid://c5hhj542rep75"]
 
-[ext_resource type="Shader" path="res://jelly.gdshader" id="1_q6bab"]
+[ext_resource type="Shader" path="res://cell.gdshader" id="1_415x3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ukn4m"]
 size = Vector3(2.5, 2.5, 2.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_goace"]
 render_priority = 0
-shader = ExtResource("1_q6bab")
-shader_parameter/albedo = Color(1, 1, 1, 0)
-shader_parameter/roughness = 0.15
-shader_parameter/normal_strength = 1.0
-shader_parameter/edge_color = Color(0.0352941, 0.858824, 0.858824, 1)
-shader_parameter/edge_strength = 0.539
-shader_parameter/scale = 1.0
+shader = ExtResource("1_415x3")
+shader_parameter/use_shade = true
+shader_parameter/use_specular = false
+shader_parameter/use_rim = true
+shader_parameter/use_light = false
+shader_parameter/use_shadow = false
+shader_parameter/base_color = Color(0, 0.466667, 0.243137, 1)
+shader_parameter/shade_color = Color(0, 0.243137, 0.113725, 1)
+shader_parameter/specular_tint = Color(0.74902, 0.74902, 0.74902, 0.74902)
+shader_parameter/rim_tint = Color(0.74902, 0.74902, 0.74902, 0.74902)
+shader_parameter/shade_threshold = 0.0
+shader_parameter/shade_softness = 0.319
+shader_parameter/specular_glossiness = 4.4
+shader_parameter/specular_threshold = 0.127
+shader_parameter/specular_softness = 0.1
+shader_parameter/rim_threshold = 0.421
+shader_parameter/rim_softness = 0.579
+shader_parameter/rim_spread = 0.5
+shader_parameter/shadow_threshold = 0.7
+shader_parameter/shadow_softness = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6w6ne"]
 resource_name = "Material.003"

@@ -16,8 +16,8 @@ void fragment() {
 	// Called for every pixel the material is visible on.
 	float offset = scale / 2.0;
 	ALBEDO = mix(top, bot, (-local_vertex.y+offset)/scale).rgb;
-	//ALPHA = abs(mix(top, bot, (-local_vertex.y+offset)/scale).a*sin(TIME))*0.8+0.01;
 	ALPHA = abs(mix(top, bot, (-local_vertex.y+offset)/scale).a*sin(TIME));
+	EMISSION = bot.rgb;
 }
 
 //void light() {

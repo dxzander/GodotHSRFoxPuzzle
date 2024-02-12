@@ -2,7 +2,7 @@
 //v2.0.0 for Godot 3.2
 
 shader_type spatial;
-render_mode ambient_light_disabled;
+render_mode ambient_light_disabled, depth_draw_always;
 
 uniform bool use_shade = true;
 uniform bool use_specular = false;
@@ -74,6 +74,6 @@ void light() {
 		diffuse *= vec4(LIGHT_COLOR, 1.0);
 	}
 
-	DIFFUSE_LIGHT = diffuse.rgb;
+	DIFFUSE_LIGHT += diffuse.rgb * ATTENUATION;
 	ALPHA = diffuse.a;
 }
