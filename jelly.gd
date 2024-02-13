@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 3.0
 var direction = Vector3(0, 0, 0)
 var directionString = 'up'

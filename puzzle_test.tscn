@@ -1,13 +1,14 @@
-[gd_scene load_steps=32 format=3 uid="uid://ymumerqhokl1"]
+[gd_scene load_steps=50 format=3 uid="uid://ymumerqhokl1"]
 
 [ext_resource type="Script" path="res://puzzle_test.gd" id="1_vecjt"]
-[ext_resource type="Script" path="res://window.gd" id="2_wdo03"]
 [ext_resource type="Texture2D" uid="uid://bslq1lmnpj1ge" path="res://arrows.png" id="3_mk7ae"]
 [ext_resource type="Texture2D" uid="uid://bdgujwi7ndxkj" path="res://arrows pressed.png" id="4_ph68j"]
 [ext_resource type="Script" path="res://Stack.gd" id="5_yiq4t"]
+[ext_resource type="Theme" uid="uid://cxp6g7swib7tp" path="res://default.theme" id="5_yq7aj"]
 [ext_resource type="PackedScene" uid="uid://bu2p4f53kkd35" path="res://jelly.tscn" id="6_44tl2"]
 [ext_resource type="Texture2D" uid="uid://c2hm6ruc7cg8w" path="res://idle.png" id="6_k54ap"]
 [ext_resource type="PackedScene" uid="uid://c5hhj542rep75" path="res://obstucalos.tscn" id="6_snc1q"]
+[ext_resource type="Script" path="res://ending.gd" id="7_noscy"]
 [ext_resource type="PackedScene" uid="uid://bly3lrw80eanc" path="res://world_environment.tscn" id="8_qtj6n"]
 [ext_resource type="Shader" path="res://checkered.gdshader" id="9_am2qv"]
 [ext_resource type="Shader" path="res://meta.gdshader" id="10_24pch"]
@@ -15,11 +16,103 @@
 [ext_resource type="Shader" path="res://tests.gdshader" id="13_81tre"]
 [ext_resource type="Shader" path="res://cell.gdshader" id="13_b1soi"]
 
-[sub_resource type="Theme" id="Theme_tbg0e"]
-default_font_size = 32
+[sub_resource type="InputEventAction" id="InputEventAction_y2lr2"]
+action = &"ui_default"
 
-[sub_resource type="Theme" id="Theme_f7saw"]
-default_font_size = 32
+[sub_resource type="Shortcut" id="Shortcut_70ev2"]
+events = [SubResource("InputEventAction_y2lr2")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_5yesh"]
+action = &"ui_clear"
+
+[sub_resource type="Shortcut" id="Shortcut_wgsns"]
+events = [SubResource("InputEventAction_5yesh")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_s314k"]
+action = &"ui_up"
+
+[sub_resource type="Shortcut" id="Shortcut_rx15f"]
+events = [SubResource("InputEventAction_s314k")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_yd8s7"]
+action = &"ui_down"
+
+[sub_resource type="Shortcut" id="Shortcut_e0iyi"]
+events = [SubResource("InputEventAction_yd8s7")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_aeia3"]
+action = &"ui_left"
+
+[sub_resource type="Shortcut" id="Shortcut_0w06e"]
+events = [SubResource("InputEventAction_aeia3")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_mn0w2"]
+action = &"ui_right"
+
+[sub_resource type="Shortcut" id="Shortcut_so2jt"]
+events = [SubResource("InputEventAction_mn0w2")]
+
+[sub_resource type="Animation" id="Animation_6g3et"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0043o"]
+resource_name = "fade in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ubmhb"]
+resource_name = "fade out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uxx7p"]
+_data = {
+"RESET": SubResource("Animation_6g3et"),
+"fade in": SubResource("Animation_0043o"),
+"fade out": SubResource("Animation_ubmhb")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_8uv3v"]
+font_size = 32
+
+[sub_resource type="InputEventAction" id="InputEventAction_bge4i"]
+action = &"ui_default"
+
+[sub_resource type="Shortcut" id="Shortcut_gy3ia"]
+events = [SubResource("InputEventAction_bge4i")]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vrxca"]
 render_priority = 0
@@ -160,7 +253,7 @@ offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="Interfaz"]
+[node name="Juego" type="GridContainer" parent="Interfaz"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,30 +262,29 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="Ventana al 3D" type="SubViewportContainer" parent="Interfaz/GridContainer"]
+[node name="Ventana al 3D" type="SubViewportContainer" parent="Interfaz/Juego"]
 custom_minimum_size = Vector2(1500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 stretch = true
-script = ExtResource("2_wdo03")
 
-[node name="SubViewport" type="SubViewport" parent="Interfaz/GridContainer/Ventana al 3D"]
+[node name="SubViewport" type="SubViewport" parent="Interfaz/Juego/Ventana al 3D"]
 handle_input_locally = false
 size = Vector2i(1500, 1080)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Interfaz/GridContainer/Ventana al 3D/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Interfaz/Juego/Ventana al 3D/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 11, 5)
 
-[node name="Controles" type="ColorRect" parent="Interfaz/GridContainer"]
+[node name="Controles" type="ColorRect" parent="Interfaz/Juego"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.133333, 0.133333, 0.133333, 1)
 
-[node name="Stack" type="GridContainer" parent="Interfaz/GridContainer/Controles"]
+[node name="Stack" type="GridContainer" parent="Interfaz/Juego/Controles"]
 layout_direction = 2
 layout_mode = 1
 anchors_preset = -1
@@ -208,19 +300,19 @@ grow_vertical = 0
 columns = 3
 script = ExtResource("5_yiq4t")
 
-[node name="First" type="TextureRect" parent="Interfaz/GridContainer/Controles/Stack"]
+[node name="First" type="TextureRect" parent="Interfaz/Juego/Controles/Stack"]
 layout_mode = 2
 texture = ExtResource("6_k54ap")
 
-[node name="Second" type="TextureRect" parent="Interfaz/GridContainer/Controles/Stack"]
+[node name="Second" type="TextureRect" parent="Interfaz/Juego/Controles/Stack"]
 layout_mode = 2
 texture = ExtResource("6_k54ap")
 
-[node name="Third" type="TextureRect" parent="Interfaz/GridContainer/Controles/Stack"]
+[node name="Third" type="TextureRect" parent="Interfaz/Juego/Controles/Stack"]
 layout_mode = 2
 texture = ExtResource("6_k54ap")
 
-[node name="Acciones" type="GridContainer" parent="Interfaz/GridContainer/Controles"]
+[node name="Acciones" type="GridContainer" parent="Interfaz/Juego/Controles"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.666
@@ -230,27 +322,29 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="Left" type="CenterContainer" parent="Interfaz/GridContainer/Controles/Acciones"]
+[node name="Left" type="CenterContainer" parent="Interfaz/Juego/Controles/Acciones"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Run" type="Button" parent="Interfaz/GridContainer/Controles/Acciones/Left"]
+[node name="Run" type="Button" parent="Interfaz/Juego/Controles/Acciones/Left"]
 layout_mode = 2
-theme = SubResource("Theme_tbg0e")
+theme = ExtResource("5_yq7aj")
+shortcut = SubResource("Shortcut_70ev2")
 text = "Run"
 icon = ExtResource("6_k54ap")
 
-[node name="Right" type="CenterContainer" parent="Interfaz/GridContainer/Controles/Acciones"]
+[node name="Right" type="CenterContainer" parent="Interfaz/Juego/Controles/Acciones"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Clear" type="Button" parent="Interfaz/GridContainer/Controles/Acciones/Right"]
+[node name="Clear" type="Button" parent="Interfaz/Juego/Controles/Acciones/Right"]
 layout_mode = 2
-theme = SubResource("Theme_f7saw")
+theme = ExtResource("5_yq7aj")
+shortcut = SubResource("Shortcut_wgsns")
 text = "Clear"
 icon = ExtResource("6_k54ap")
 
-[node name="Direcciones" type="Control" parent="Interfaz/GridContainer/Controles"]
+[node name="Direcciones" type="Control" parent="Interfaz/Juego/Controles"]
 layout_mode = 1
 anchor_left = 0.25
 anchor_top = 0.09
@@ -258,7 +352,7 @@ anchor_right = 0.75
 anchor_bottom = 0.276
 grow_horizontal = 2
 
-[node name="Up" type="TextureButton" parent="Interfaz/GridContainer/Controles/Direcciones"]
+[node name="Up" type="TextureButton" parent="Interfaz/Juego/Controles/Direcciones"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -267,10 +361,11 @@ offset_left = -32.0
 offset_right = 32.0
 offset_bottom = 64.0
 grow_horizontal = 2
+shortcut = SubResource("Shortcut_rx15f")
 texture_normal = ExtResource("3_mk7ae")
 texture_pressed = ExtResource("4_ph68j")
 
-[node name="Down" type="TextureButton" parent="Interfaz/GridContainer/Controles/Direcciones"]
+[node name="Down" type="TextureButton" parent="Interfaz/Juego/Controles/Direcciones"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -282,11 +377,12 @@ offset_top = -64.0
 offset_right = 32.0
 grow_horizontal = 2
 grow_vertical = 0
+shortcut = SubResource("Shortcut_e0iyi")
 texture_normal = ExtResource("3_mk7ae")
 texture_pressed = ExtResource("4_ph68j")
 flip_v = true
 
-[node name="Left" type="TextureButton" parent="Interfaz/GridContainer/Controles/Direcciones"]
+[node name="Left" type="TextureButton" parent="Interfaz/Juego/Controles/Direcciones"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -297,10 +393,11 @@ offset_bottom = 32.0
 grow_vertical = 2
 rotation = -1.5708
 pivot_offset = Vector2(32, 32)
+shortcut = SubResource("Shortcut_0w06e")
 texture_normal = ExtResource("3_mk7ae")
 texture_pressed = ExtResource("4_ph68j")
 
-[node name="Right" type="TextureButton" parent="Interfaz/GridContainer/Controles/Direcciones"]
+[node name="Right" type="TextureButton" parent="Interfaz/Juego/Controles/Direcciones"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -314,8 +411,58 @@ grow_horizontal = 0
 grow_vertical = 2
 rotation = 1.5708
 pivot_offset = Vector2(32, 32)
+shortcut = SubResource("Shortcut_so2jt")
 texture_normal = ExtResource("3_mk7ae")
 texture_pressed = ExtResource("4_ph68j")
+
+[node name="Ending" type="ColorRect" parent="Interfaz"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -200.0
+offset_right = 400.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.133333, 0.133333, 1)
+script = ExtResource("7_noscy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interfaz/Ending"]
+libraries = {
+"": SubResource("AnimationLibrary_uxx7p")
+}
+
+[node name="GridContainer" type="GridContainer" parent="Interfaz/Ending"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mensaje" type="Label" parent="Interfaz/Ending/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "prueba"
+label_settings = SubResource("LabelSettings_8uv3v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reiniciar" type="Button" parent="Interfaz/Ending/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("5_yq7aj")
+disabled = true
+shortcut = SubResource("Shortcut_gy3ia")
+text = "Reiniciar"
+icon = ExtResource("6_k54ap")
+alignment = 0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.313992, -0.822227, 0.474713, 0, 0.5, 0.866025, -0.949426, -0.271925, 0.156996, 0, 0, 0)
@@ -389,12 +536,17 @@ material_override = SubResource("ShaderMaterial_gkciv")
 mesh = SubResource("CylinderMesh_dgpxb")
 skeleton = NodePath("../..")
 
-[connection signal="move_in_direction" from="Interfaz/GridContainer/Controles/Stack" to="jelly" method="_on_stack_move_in_direction"]
-[connection signal="pressed" from="Interfaz/GridContainer/Controles/Acciones/Left/Run" to="Interfaz/GridContainer/Controles/Stack" method="_on_run_pressed"]
-[connection signal="pressed" from="Interfaz/GridContainer/Controles/Acciones/Right/Clear" to="Interfaz/GridContainer/Controles/Stack" method="_on_clear_pressed"]
-[connection signal="pressed" from="Interfaz/GridContainer/Controles/Direcciones/Up" to="Interfaz/GridContainer/Controles/Stack" method="_on_up_pressed"]
-[connection signal="pressed" from="Interfaz/GridContainer/Controles/Direcciones/Down" to="Interfaz/GridContainer/Controles/Stack" method="_on_down_pressed"]
-[connection signal="pressed" from="Interfaz/GridContainer/Controles/Direcciones/Left" to="Interfaz/GridContainer/Controles/Stack" method="_on_left_pressed"]
-[connection signal="pressed" from="Interfaz/GridContainer/Controles/Direcciones/Right" to="Interfaz/GridContainer/Controles/Stack" method="_on_right_pressed"]
-[connection signal="wall_hit" from="jelly" to="Interfaz/GridContainer/Controles/Stack" method="_on_jelly_wall_hit"]
+[connection signal="move_in_direction" from="Interfaz/Juego/Controles/Stack" to="jelly" method="_on_stack_move_in_direction"]
+[connection signal="ran_out_of_stack" from="Interfaz/Juego/Controles/Stack" to="Meta" method="_on_stack_ran_out_of_stack"]
+[connection signal="pressed" from="Interfaz/Juego/Controles/Acciones/Left/Run" to="Interfaz/Juego/Controles/Stack" method="_on_run_pressed"]
+[connection signal="pressed" from="Interfaz/Juego/Controles/Acciones/Right/Clear" to="Interfaz/Juego/Controles/Stack" method="_on_clear_pressed"]
+[connection signal="pressed" from="Interfaz/Juego/Controles/Direcciones/Up" to="Interfaz/Juego/Controles/Stack" method="_on_up_pressed"]
+[connection signal="pressed" from="Interfaz/Juego/Controles/Direcciones/Down" to="Interfaz/Juego/Controles/Stack" method="_on_down_pressed"]
+[connection signal="pressed" from="Interfaz/Juego/Controles/Direcciones/Left" to="Interfaz/Juego/Controles/Stack" method="_on_left_pressed"]
+[connection signal="pressed" from="Interfaz/Juego/Controles/Direcciones/Right" to="Interfaz/Juego/Controles/Stack" method="_on_right_pressed"]
+[connection signal="animation_finished" from="Interfaz/Ending/AnimationPlayer" to="Interfaz/Ending" method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="Interfaz/Ending/GridContainer/Reiniciar" to="." method="_on_reiniciar_pressed"]
+[connection signal="wall_hit" from="jelly" to="Interfaz/Juego/Controles/Stack" method="_on_jelly_wall_hit"]
+[connection signal="lost" from="Meta" to="Interfaz/Ending" method="_on_meta_lost"]
+[connection signal="winning" from="Meta" to="Interfaz/Ending" method="_on_meta_winning"]
 [connection signal="winning" from="Meta" to="jelly" method="_on_meta_winning"]
