@@ -62,6 +62,7 @@ func grid_to_real(index, width, height):
 
 func _on_reiniciar_pressed():
 	$jelly.position = player_initial_position
+	$jelly.direction = Vector3(0, 0, 0)
 	$Interfaz/Juego/Controles/Stack.clear_stack()
 	$Interfaz/Juego/Controles/Stack.enable_buttons()
 	$Interfaz/Ending/AnimationPlayer.play("fade out")

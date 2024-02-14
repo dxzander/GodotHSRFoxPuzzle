@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ymumerqhokl1"]
+[gd_scene load_steps=51 format=3 uid="uid://ymumerqhokl1"]
 
 [ext_resource type="Script" path="res://puzzle_test.gd" id="1_vecjt"]
 [ext_resource type="Texture2D" uid="uid://bslq1lmnpj1ge" path="res://arrows.png" id="3_mk7ae"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Meta.gd" id="10_e8b43"]
 [ext_resource type="Shader" path="res://tests.gdshader" id="13_81tre"]
 [ext_resource type="Shader" path="res://cell.gdshader" id="13_b1soi"]
+[ext_resource type="AudioStream" uid="uid://ct07gpbewiiu3" path="res://Neutral - Master.wav" id="16_4mxxc"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_y2lr2"]
 action = &"ui_default"
@@ -535,6 +536,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.72862, 0, 0)
 material_override = SubResource("ShaderMaterial_gkciv")
 mesh = SubResource("CylinderMesh_dgpxb")
 skeleton = NodePath("../..")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_4mxxc")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="move_in_direction" from="Interfaz/Juego/Controles/Stack" to="jelly" method="_on_stack_move_in_direction"]
 [connection signal="ran_out_of_stack" from="Interfaz/Juego/Controles/Stack" to="Meta" method="_on_stack_ran_out_of_stack"]
