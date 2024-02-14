@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ymumerqhokl1"]
+[gd_scene load_steps=52 format=3 uid="uid://ymumerqhokl1"]
 
 [ext_resource type="Script" path="res://puzzle_test.gd" id="1_vecjt"]
 [ext_resource type="Texture2D" uid="uid://bslq1lmnpj1ge" path="res://arrows.png" id="3_mk7ae"]
@@ -16,6 +16,7 @@
 [ext_resource type="Shader" path="res://tests.gdshader" id="13_81tre"]
 [ext_resource type="Shader" path="res://cell.gdshader" id="13_b1soi"]
 [ext_resource type="AudioStream" uid="uid://ct07gpbewiiu3" path="res://Neutral - Master.wav" id="16_4mxxc"]
+[ext_resource type="PackedScene" uid="uid://cutapwppef6hh" path="res://cucumber.tscn" id="17_v30pe"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_y2lr2"]
 action = &"ui_default"
@@ -541,6 +542,9 @@ skeleton = NodePath("../..")
 stream = ExtResource("16_4mxxc")
 volume_db = -15.0
 autoplay = true
+
+[node name="cucumber" parent="." instance=ExtResource("17_v30pe")]
+transform = Transform3D(1, 0, 0, 0, 0.965167, 0.261633, 0, -0.261633, 0.965167, -5.99501, 0, 1.76456)
 
 [connection signal="move_in_direction" from="Interfaz/Juego/Controles/Stack" to="jelly" method="_on_stack_move_in_direction"]
 [connection signal="ran_out_of_stack" from="Interfaz/Juego/Controles/Stack" to="Meta" method="_on_stack_ran_out_of_stack"]
