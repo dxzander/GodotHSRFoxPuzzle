@@ -206,7 +206,7 @@ skin = SubResource("Skin_cu3qv")
 surface_material_override/0 = SubResource("ShaderMaterial_ugrjp")
 
 [node name="Jigglebone" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(0.904713, -0.192546, -0.380026, 0.425267, 0.35512, 0.832489, -0.0253381, -0.914777, 0.403165, -0.142504, 0.231242, -1)
+transform = Transform3D(0.897573, -0.440866, 0.000344081, 0.440866, 0.897573, -2.79018e-07, -0.000308714, 0.000151944, 1, -0.141959, 0.231242, -1)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "Head"
@@ -214,7 +214,7 @@ stiffness = 0.1
 gravity = Vector3(0, -9.8, 0)
 
 [node name="Jigglebone2" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(0.20709, 0.978322, -0.000319075, -0.978322, 0.20709, 4.03691e-05, 0.000105571, 0.000303798, 1, -0.142504, 0.231242, -1)
+transform = Transform3D(0.20709, 0.978322, 0.000321878, -0.978322, 0.20709, -9.50968e-08, -6.67509e-05, -0.000314881, 1, -0.14196, 0.231242, -1)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "UpperAL"
@@ -222,7 +222,7 @@ stiffness = 0.1
 gravity = Vector3(0, -9.8, 0)
 
 [node name="Jigglebone3" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(0.337685, 0.941259, -0.000160528, -0.941259, 0.337685, 0.000676585, 0.000691049, -7.73743e-05, 1, 0.439171, 0.354371, -1.0001)
+transform = Transform3D(0.337702, 0.941253, -0.000580891, -0.941253, 0.337702, -2.66329e-07, 0.000195917, 0.000546856, 1, 0.439623, 0.354372, -1.00004)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "LowerAL"
@@ -230,7 +230,7 @@ stiffness = 0.1
 gravity = Vector3(0, -9.8, 0)
 
 [node name="Jigglebone4" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(-0.598435, -0.801171, -0.000319308, 0.801171, -0.598435, 4.06314e-05, -0.000223638, -0.000231505, 1, -0.142504, 0.231242, -1)
+transform = Transform3D(-0.598435, -0.801171, 0.000284061, 0.801171, -0.598435, 2.93418e-07, 0.000169757, 0.000227757, 1, -0.141959, 0.231241, -1)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "UpperAR"
@@ -238,7 +238,7 @@ stiffness = 0.1
 gravity = Vector3(0, -9.8, 0)
 
 [node name="Jigglebone5" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(-0.498139, -0.867097, -0.000502795, 0.867097, -0.498138, -0.000622564, 0.000289362, -0.000746095, 1, -0.606712, -0.115499, -0.999923)
+transform = Transform3D(-0.498124, -0.867105, -8.36507e-05, 0.867105, -0.498124, 1.09481e-07, -4.17633e-05, -7.24794e-05, 1, -0.606218, -0.1155, -0.999884)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "LowerAR"
@@ -246,7 +246,7 @@ stiffness = 0.1
 gravity = Vector3(0, -9.8, 0)
 
 [node name="Jigglebone6" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(-1.19209e-07, 0.911358, -0.411615, -1.19209e-07, 0.411615, 0.911358, 1, 1.78814e-07, 0, 0.652361, -1.07526, 7.6143e-09)
+transform = Transform3D(-1.19209e-07, 0.911215, -0.41193, -8.9407e-08, 0.41193, 0.911215, 1, 2.08616e-07, 0, 0.652923, -1.07485, 7.59264e-09)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "HipL"
@@ -254,7 +254,7 @@ stiffness = 0.1
 gravity = Vector3(0, -9.8, 0)
 
 [node name="Jigglebone7" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(-0.0625737, 0.998027, 0.00522429, -0.447183, -0.032716, 0.893844, 0.892251, 0.0535949, 0.448348, 0.675051, -0.681383, -0.776173)
+transform = Transform3D(-0.0623554, 0.998042, 0.00500986, -0.447815, -0.0324638, 0.893537, 0.891949, 0.0534734, 0.448962, 0.674954, -0.680125, -0.77703)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "LegL"
@@ -262,7 +262,7 @@ stiffness = 0.1
 gravity = Vector3(0, -9.8, 0)
 
 [node name="Jigglebone8" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(1.19209e-07, -0.744646, -0.66746, 1.19209e-07, -0.66746, 0.744646, -1, -1.19209e-07, 1.19209e-07, 0.869881, -0.860934, 6.41662e-08)
+transform = Transform3D(1.78814e-07, -0.744371, -0.667766, 0, -0.667767, 0.744371, -1, -1.49012e-07, -1.19209e-07, 0.870372, -0.860273, 6.40557e-08)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "HipR"
@@ -270,7 +270,7 @@ stiffness = 0.1
 gravity = Vector3(0, -9.8, 0)
 
 [node name="Jigglebone9" type="Node3D" parent="Armature/Skeleton3D"]
-transform = Transform3D(-0.48942, -0.537003, -0.687093, 0.250855, -0.8413, 0.478839, -0.835188, 0.0619927, 0.546459, -0.0443641, -0.950336, -0.887307)
+transform = Transform3D(-0.489012, -0.536738, -0.68759, 0.250212, -0.841457, 0.478898, -0.83562, 0.0621436, 0.545781, -0.043081, -0.951431, -0.886601)
 top_level = true
 script = ExtResource("4_o4d80")
 bone_name = "LegR"

@@ -8,11 +8,7 @@ var rotationTimerRate = 0.2
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var sinOutput = sin(rotationTimer)
-	var newRotation = sinOutput * maxRotation
-	print(newRotation)
-	rotation.z = newRotation
+	rotation.z = sin(rotationTimer) * maxRotation
 	rotationTimer += rotationTimerRate

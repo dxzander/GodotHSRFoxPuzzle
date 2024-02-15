@@ -56,21 +56,21 @@ func _physics_process(delta):
 	# hover in place
 	lemniscateTimeCounter = lemniscateTimeCounter + lemniscateTimeCounterRate
 	hoverVector = Vector2((cos(lemniscateTimeCounter)*hoverStrengthX), (sin(2*lemniscateTimeCounter)/2)*hoverStrengthY)
-	
+	$Armature/Skeleton3D.position = Vector3(hoverVector.x, hoverVector.y, 0.0)
 	# calculate direction using hover
-	if direction == Vector3(0, 0, 0):		# idle
-		finalDirection = (direction + Vector3(hoverVector.x, hoverVector.y, 0)) * SPEED
-	elif direction == Vector3(0, 0, -1):	# up
-		finalDirection = (direction + Vector3(hoverVector.x, hoverVector.y, 0)) * SPEED
-	elif direction == Vector3(0, 0, 1):		# down
-		finalDirection = (direction + Vector3(-hoverVector.x, hoverVector.y, 0)) * SPEED
-	elif direction == Vector3(1, 0, 0):		# right
-		finalDirection = (direction + Vector3(0, hoverVector.y, hoverVector.x)) * SPEED
-	elif direction == Vector3(-1, 0, 0):	# left
-		finalDirection = (direction + Vector3(0, hoverVector.y, -hoverVector.x)) * SPEED
+	#if direction == Vector3(0, 0, 0):		# idle
+		#finalDirection = (direction + Vector3(hoverVector.x, hoverVector.y, 0)) * SPEED
+	#elif direction == Vector3(0, 0, -1):	# up
+		#finalDirection = (direction + Vector3(hoverVector.x, hoverVector.y, 0)) * SPEED
+	#elif direction == Vector3(0, 0, 1):		# down
+		#finalDirection = (direction + Vector3(-hoverVector.x, hoverVector.y, 0)) * SPEED
+	#elif direction == Vector3(1, 0, 0):		# right
+		#finalDirection = (direction + Vector3(0, hoverVector.y, hoverVector.x)) * SPEED
+	#elif direction == Vector3(-1, 0, 0):	# left
+		#finalDirection = (direction + Vector3(0, hoverVector.y, -hoverVector.x)) * SPEED
 	
 	# apply translation
-	set_velocity(finalDirection)
+	set_velocity(direction * SPEED)
 	move_and_slide()
 	
 	# collision validation
