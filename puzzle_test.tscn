@@ -543,8 +543,11 @@ stream = ExtResource("16_4mxxc")
 volume_db = -15.0
 autoplay = true
 
+[node name="cucumber2" parent="." instance=ExtResource("17_v30pe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -9)
+
 [node name="cucumber" parent="." instance=ExtResource("17_v30pe")]
-transform = Transform3D(1, 0, 0, 0, 0.965167, 0.261633, 0, -0.261633, 0.965167, -5.99501, 0, 1.76456)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -9)
 
 [connection signal="move_in_direction" from="Interfaz/Juego/Controles/Stack" to="jelly" method="_on_stack_move_in_direction"]
 [connection signal="ran_out_of_stack" from="Interfaz/Juego/Controles/Stack" to="Meta" method="_on_stack_ran_out_of_stack"]

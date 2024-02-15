@@ -1,50 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://cutapwppef6hh"]
+[gd_scene load_steps=7 format=3 uid="uid://cutapwppef6hh"]
 
 [ext_resource type="PackedScene" uid="uid://fjo7x5njnswp" path="res://cucumber.glb" id="1_qudef"]
+[ext_resource type="Script" path="res://cucumber.gd" id="2_ky4o0"]
 [ext_resource type="Shader" path="res://jelly.gdshader" id="2_r28di"]
 [ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="3_ci5xv"]
+[ext_resource type="Texture2D" uid="uid://rmxprglnd2sy" path="res://Linus Kappa Transparent.png" id="3_nyjnu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ln6ww"]
 render_priority = 0
 shader = ExtResource("2_r28di")
-shader_parameter/albedo = Color(0.635294, 1, 0.6, 0)
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_nyjnu")
 shader_parameter/roughness = 0.15
-shader_parameter/normal_strength = -16.0
+shader_parameter/normal_strength = 1.0
 shader_parameter/edge_color = Color(0, 1, 0, 1)
 shader_parameter/edge_strength = 0.571
 shader_parameter/scale = 1.0
 
 [node name="cucumber" instance=ExtResource("1_qudef")]
+script = ExtResource("2_ky4o0")
+
+[node name="Armature" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Circle" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_ln6ww")
 
 [node name="Jigglebone" type="Node3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 4.95367e-17, -1.04743e-13, -6.66508e-17, 1, -0.000163391, 1.04743e-13, 0.000163391, 1, -7.33112e-19, -1.14355e-09, -1)
+transform = Transform3D(-4.37142e-08, 0.000250439, -1, 3.53205e-16, 1, 0.000250439, 1, 1.09474e-11, -4.37142e-08, 1, 0, 4.37114e-08)
 top_level = true
 script = ExtResource("3_ci5xv")
-bone_name = "Bone"
+bone_name = "Bone1"
 
 [node name="Jigglebone2" type="Node3D" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, 3.81685e-11, 2.3821e-07, 4.33743e-11, 1, -0.000342315, -2.3821e-07, 0.000342315, 1, -2.38419e-07, 2.09748, -1)
+transform = Transform3D(1.94641e-07, 0.000136035, -1, -5.9578e-11, 1, 0.000136035, 1, 3.31e-11, 1.94641e-07, 1.00053, 2.09723, -1.94681e-07)
 top_level = true
 script = ExtResource("3_ci5xv")
-bone_name = "Bone.001"
+bone_name = "Bone2"
 
 [node name="Jigglebone3" type="Node3D" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(1, -4.77454e-11, 1.2438e-07, 3.43752e-11, 1, 0.000107495, -1.2438e-07, -0.000107495, 1, -2.3842e-07, 3.64109, -1)
+transform = Transform3D(1.94567e-07, 0.000393577, -1, -5.9516e-11, 1, 0.000393577, 1, -1.70612e-11, 1.94567e-07, 1.00074, 3.64095, -1.94567e-07)
 top_level = true
 script = ExtResource("3_ci5xv")
-bone_name = "Bone.002"
+bone_name = "Bone3"
 
 [node name="Jigglebone4" type="Node3D" parent="Armature/Skeleton3D" index="4"]
-transform = Transform3D(1, -7.73355e-11, 6.53946e-08, 5.83041e-11, 1, 0.000291024, -6.53946e-08, -0.000291024, 1, -2.3842e-07, 5.17561, -1)
+transform = Transform3D(1.94763e-07, 0.000491412, -1, -5.93664e-11, 1, 0.000491412, 1, -3.63424e-11, 1.94763e-07, 1.00134, 5.17521, -1.94519e-07)
 top_level = true
 script = ExtResource("3_ci5xv")
-bone_name = "Bone.003"
+bone_name = "Bone4"
 
 [node name="Jigglebone5" type="Node3D" parent="Armature/Skeleton3D" index="5"]
-transform = Transform3D(1, -3.28957e-11, 2.50163e-07, 4.81502e-11, 1, -6.09782e-05, -2.50163e-07, 6.09782e-05, 1, -2.3842e-07, 6.7168, -1)
+transform = Transform3D(1.94719e-07, 0.000190523, -1, -5.90721e-11, 1, 0.000190523, 1, 2.19737e-11, 1.94719e-07, 1.0021, 6.71631, -1.94771e-07)
 top_level = true
 script = ExtResource("3_ci5xv")
-bone_name = "Bone.004"
+bone_name = "Bone5"

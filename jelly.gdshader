@@ -5,7 +5,7 @@ render_mode diffuse_burley, specular_schlick_ggx, blend_mix;
 
 group_uniforms albedo;
 uniform vec4 albedo : source_color = vec4(1.0, 1.0, 1.0, 0.0);
-uniform sampler2D albedo_texture : source_color, hint_default_white;
+uniform sampler2D albedo_texture : source_color, hint_default_white, repeat_disable;
 
 group_uniforms roughness;
 uniform float roughness : hint_range(0.0, 1.0) = 0.15;

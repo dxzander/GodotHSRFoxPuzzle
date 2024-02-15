@@ -35,16 +35,45 @@ var yays = [yay, yeah, yippie]
 
 var random = RandomNumberGenerator.new()
 
+var hoverStrengthX = 0.2
+var hoverStrengthY = 0.3
+var lemniscateTimeCounter = 0
+var lemniscateTimeCounterRate = 0.04
+var hoverVector = Vector2()
+
+var finalDirection = Vector3()
+
 func _ready():
 	randomize()
 	pass
 
 func _physics_process(delta):
-	velocity = direction * SPEED
-	move_and_slide()
+	# rotation handling
 	curOrientation = get_global_rotation_degrees()
 	tarOrientation = curOrientation.lerp(dirToRot[directionString], rotation_speed)
 	set_global_rotation_degrees(tarOrientation)
+	
+	# hover in place
+	lemniscateTimeCounter = lemniscateTimeCounter + lemniscateTimeCounterRate
+	hoverVector = Vector2((cos(lemniscateTimeCounter)*hoverStrengthX), (sin(2*lemniscateTimeCounter)/2)*hoverStrengthY)
+	
+	# calculate direction using hover
+	if direction == Vector3(0, 0, 0):		# idle
+		finalDirection = (direction + Vector3(hoverVector.x, hoverVector.y, 0)) * SPEED
+	elif direction == Vector3(0, 0, -1):	# up
+		finalDirection = (direction + Vector3(hoverVector.x, hoverVector.y, 0)) * SPEED
+	elif direction == Vector3(0, 0, 1):		# down
+		finalDirection = (direction + Vector3(-hoverVector.x, hoverVector.y, 0)) * SPEED
+	elif direction == Vector3(1, 0, 0):		# right
+		finalDirection = (direction + Vector3(0, hoverVector.y, hoverVector.x)) * SPEED
+	elif direction == Vector3(-1, 0, 0):	# left
+		finalDirection = (direction + Vector3(0, hoverVector.y, -hoverVector.x)) * SPEED
+	
+	# apply translation
+	set_velocity(finalDirection)
+	move_and_slide()
+	
+	# collision validation
 	if is_on_wall():
 		if get_wall_normal() + direction == Vector3(0,0,0):
 			$Boca.set_stream(ouchies[random.randi_range(0,2)])
@@ -57,14 +86,11 @@ func _physics_process(delta):
 func _on_stack_move_in_direction(direct):
 	direction = dirToVec[direct]
 	directionString = direct
-	pass # Replace with function body.
 
 func _on_timer_timeout():
 	$Label3D.text = ''
-	pass # Replace with function body.
 
 func _on_meta_winning():
 	$Boca.set_stream(yays[random.randi_range(0,2)])
 	$Boca.play()
 	$Label3D.text = 'yay'
-	pass # Replace with function body.
